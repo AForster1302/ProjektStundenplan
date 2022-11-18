@@ -10,8 +10,11 @@ GO
 
 -------------------------------------
 
-DROP TABLE IF EXISTS Faecher;
-DROP TABLE IF EXISTS Schultage;
+DROP TABLE IF EXISTS Lehrer;
+DROP TABLE IF EXISTS Schulstunde;
+DROP TABLE IF EXISTS Schultag;
+DROP TABLE IF EXISTS Stundenplan;
+DROP TABLE IF EXISTS LehrerSchulstunde;
 
 CREATE TABLE Lehrer(
 	LehrerID INT Not Null Primary Key Identity(1,1),
