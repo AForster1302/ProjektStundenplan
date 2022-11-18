@@ -29,15 +29,6 @@ namespace SOTprojekt
 
         public void Ausgabe()
         {
-            //foreach (var Schultag in Schulwoche)
-            //{
-            //    Console.WriteLine($"Tag: {Schultag.Tag}");
-            //    foreach (var Fach in Schultag.Schulstunde)
-            //    {
-            //        Console.WriteLine($"{Fach.Key} {Fach.Value.Fach}");
-            //    }
-            //}
-
             foreach (var schultag in Schulwoche)
             {
                 Console.WriteLine($"{schultag.Tag}: ");

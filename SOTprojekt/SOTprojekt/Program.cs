@@ -22,7 +22,7 @@ namespace SOTprojekt
         {
             VerwaltungSchulwoche bsp = new VerwaltungSchulwoche();
 
-            VerwaltungFaecher Deutsch = new VerwaltungFaecher( "Deutsch");
+            VerwaltungFaecher Deutsch = new VerwaltungFaecher("Deutsch");
             VerwaltungFaecher Mathematik = new VerwaltungFaecher("Mathematik");
             VerwaltungFaecher Englisch = new VerwaltungFaecher("Englisch");
             VerwaltungFaecher Sport = new VerwaltungFaecher("Sport");
