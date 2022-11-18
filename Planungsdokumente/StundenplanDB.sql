@@ -23,8 +23,7 @@ CREATE TABLE Lehrer(
 
 );
 
-
-
+-------------------------------------
 
 CREATE TABLE Schulstunde(
 	SchultagID INT Not Null Primary Key Identity(1,1),
@@ -32,6 +31,8 @@ CREATE TABLE Schulstunde(
 
 
 );
+
+-------------------------------------
 
 CREATE TABLE LehrerSchulstunde(
 	lehrer_id INT,
@@ -42,6 +43,7 @@ CREATE TABLE LehrerSchulstunde(
 
 );
 
+-------------------------------------
 
 CREATE TABLE Schultag(
 	SchultagID INT Not Null Primary Key Identity(1,1),
@@ -57,7 +59,6 @@ CREATE TABLE Stundenplan(
 );
 
 -------------------------------------
-
 
 INSERT INTO Schulstunde VALUES ('Deutsch');
 INSERT INTO Schulstunde VALUES ('Mathematik');
