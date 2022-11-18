@@ -13,67 +13,80 @@ GO
 DROP TABLE IF EXISTS Faecher;
 DROP TABLE IF EXISTS Schultage;
 
-CREATE TABLE Faecher(
-	UserID INT Not Null Primary Key Identity(1,1),
-	UserName VARCHAR(100) NOT NULL,
-	HashPassword VARCHAR(100) NOT NULL,
-	Salt VARCHAR(100) NOT NULL,
+CREATE TABLE Lehrer(
+	LehrerID INT Not Null Primary Key Identity(1,1),
+	LehrerVorname VARCHAR(100) NOT NULL,
+	LehrerNachname VARCHAR(100) NOT NULL,
+
+);
+
+
+
+
+CREATE TABLE Schulstunde(
+	SchultagID INT Not Null Primary Key Identity(1,1),
+	NameFach VARCHAR(100) NOT NULL,
+
+
+);
+
+CREATE TABLE LehrerSchulstunde(
+	lehrer_id INT,
+	schulstunde_id INT,
+	PRIMARY KEY(lehrer_id, schulstunde_id),
+		FOREIGN KEY (lehrer_id) REFERENCES Schulstunde(SchultagID),
+		FOREIGN KEY (schulstunde_id) REFERENCES Lehrer(LehrerID)
+
+);
+
+
+CREATE TABLE Schultag(
+	SchultagID INT Not Null Primary Key Identity(1,1),
+
+);
+
+-------------------------------------
+
+CREATE TABLE Stundenplan(
+	WocheID INT Not Null Primary Key Identity(1,1),
+	Stundenplan NVARCHAR(10) NOT NULL,
 	
 );
 
 -------------------------------------
 
-CREATE TABLE Schultage(
-	ExerciseID INT Not Null Primary Key Identity(1,1),
-	Category NVARCHAR(10),
-	ExerciseName NVARCHAR(100),
-	Difficulty NVARCHAR(20),
-	Description TEXT,
-	
-);
 
--------------------------------------
+INSERT INTO Schulstunde VALUES ('Deutsch');
+INSERT INTO Schulstunde VALUES ('Mathematik');
+INSERT INTO Schulstunde VALUES ('Englisch');
+INSERT INTO Schulstunde VALUES ('Sport');
+INSERT INTO Schulstunde VALUES ('Erdkunde');
+INSERT INTO Schulstunde VALUES ('Kunst');
+INSERT INTO Schulstunde VALUES ('Geschichte');
+INSERT INTO Schulstunde VALUES ('Programmierung');
+INSERT INTO Schulstunde VALUES ('Frei');
 
-CREATE TABLE Routine(
-	RoutineID INT Not Null Primary Key Identity(1,1) ,
-	RoutineName NVARCHAR(100),
-	UserID INT
-		Constraint Routine_Users Foreign Key (UserID) References Users(UserID),
-);
+INSERT INTO Schultag VALUES ('Montag');
+INSERT INTO Schultag VALUES ('Dienstag');
+INSERT INTO Schultag VALUES ('Mittwoch');
+INSERT INTO Schultag VALUES ('Donnerstag');
+INSERT INTO Schultag VALUES ('Freitag');
 
--------------------------------------
+INSERT INTO Lehrer VALUES ('Ulke','Schmidt');
+INSERT INTO Lehrer VALUES ('Walter','Müller');
+INSERT INTO Lehrer VALUES ('Frank','Fischer');
+INSERT INTO Lehrer VALUES ('Yvonne','Becker');
+INSERT INTO Lehrer VALUES ('Peter','Fuchs');
+INSERT INTO Lehrer VALUES ('Rainer','Winkler');
 
-CREATE TABLE RoutineExercises(
-	RoutineExercisesID INT NOT NULL Primary Key Identity(1,1),
-	Repetitions INT,
-	Duration INT,
-	BreakRoutine TIME,
-	RoutineID INT not null,
-    ExerciseID INT not null,
-	CONSTRAINT fk_exercises FOREIGN KEY (ExerciseID) REFERENCES Exercise(ExerciseID),
-	CONSTRAINT fk_routine FOREIGN KEY (RoutineID) REFERENCES Routine(RoutineID)
-);
 
--------------------------------------
 
-CREATE TABLE Reminders(
-  ReminderID INT Not Null Primary Key Identity(1,1), 
-  CalendarDate DATETIME,
-	UserID INT,
-		Constraint fk_User Foreign Key (UserID) References Users(UserID),
-);
-
--------------------------------------
-
-CREATE TABLE RoutineHistory(
-	HistoryID INT Not Null Primary Key Identity(1,1),
-	RoutineID INT not null,
-	UserID INT,
-	FOREIGN KEY (RoutineID) REFERENCES Routine(RoutineID),
-	DateHistory Datetime,
-	Constraint RoutineHistory_Users Foreign Key (UserID) References Users(UserID),
-);
-
--------------------------------------
-
-INSERT INTO Exercise VALUES ('Pause', 'Pause', '','Machen Sie eine Pause.');
+INSERT INTO LehrerSchulstunde VALUES (1,1);
+INSERT INTO LehrerSchulstunde VALUES (1,2);
+INSERT INTO LehrerSchulstunde VALUES (1,3);
+INSERT INTO LehrerSchulstunde VALUES (2,4);
+INSERT INTO LehrerSchulstunde VALUES (2,5);
+INSERT INTO LehrerSchulstunde VALUES (3,6);
+INSERT INTO LehrerSchulstunde VALUES (4,7);
+INSERT INTO LehrerSchulstunde VALUES (5,8);
+INSERT INTO LehrerSchulstunde VALUES (6,9);
