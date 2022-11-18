@@ -15,6 +15,8 @@ DROP TABLE IF EXISTS Schulstunde;
 DROP TABLE IF EXISTS Schultag;
 DROP TABLE IF EXISTS Stundenplan;
 DROP TABLE IF EXISTS LehrerSchulstunde;
+DROP TABLE IF EXISTS SchultagSchulstunde;
+
 
 CREATE TABLE Lehrer(
 	LehrerID INT Not Null Primary Key Identity(1,1),
@@ -26,7 +28,7 @@ CREATE TABLE Lehrer(
 -------------------------------------
 
 CREATE TABLE Schulstunde(
-	SchultagID INT Not Null Primary Key Identity(1,1),
+	SchulstundeID INT Not Null Primary Key Identity(1,1),
 	NameFach VARCHAR(100) NOT NULL,
 
 
@@ -38,7 +40,7 @@ CREATE TABLE LehrerSchulstunde(
 	lehrer_id INT,
 	schulstunde_id INT,
 	PRIMARY KEY(lehrer_id, schulstunde_id),
-		FOREIGN KEY (lehrer_id) REFERENCES Schulstunde(SchultagID),
+		FOREIGN KEY (lehrer_id) REFERENCES Schulstunde(SchulstundeID),
 		FOREIGN KEY (schulstunde_id) REFERENCES Lehrer(LehrerID)
 
 );
@@ -47,14 +49,26 @@ CREATE TABLE LehrerSchulstunde(
 
 CREATE TABLE Schultag(
 	SchultagID INT Not Null Primary Key Identity(1,1),
+	TagName VARCHAR(100) NOT NULL,
 
 );
 
 -------------------------------------
 
-CREATE TABLE Stundenplan(
-	WocheID INT Not Null Primary Key Identity(1,1),
-	Stundenplan NVARCHAR(10) NOT NULL,
+CREATE TABLE SchultagSchulstunde(
+	schultag_id INT,
+	schulstunde_id INT,
+	PRIMARY KEY(schultag_id, schulstunde_id),
+		FOREIGN KEY (schultag_id) REFERENCES Schultag(SchultagID),
+		FOREIGN KEY (schulstunde_id) REFERENCES Schulstunde(SchulstundeID)
+
+);
+
+
+-------------------------------------
+
+CREATE TABLE Schulwoche(
+	WochentagID INT Not Null Primary Key Identity(1,1),
 	
 );
 
@@ -83,7 +97,35 @@ INSERT INTO Lehrer VALUES ('Yvonne','Becker');
 INSERT INTO Lehrer VALUES ('Peter','Fuchs');
 INSERT INTO Lehrer VALUES ('Rainer','Winkler');
 
+INSERT INTO SchultagSchulstunde VALUES (1,1);
+INSERT INTO SchultagSchulstunde VALUES (1,1);
+INSERT INTO SchultagSchulstunde VALUES (1,2);
+INSERT INTO SchultagSchulstunde VALUES (1,2);
+INSERT INTO SchultagSchulstunde VALUES (1,2);
 
+INSERT INTO SchultagSchulstunde VALUES (2,3);
+INSERT INTO SchultagSchulstunde VALUES (2,3);
+INSERT INTO SchultagSchulstunde VALUES (2,2);
+INSERT INTO SchultagSchulstunde VALUES (2,5);
+INSERT INTO SchultagSchulstunde VALUES (2,5);
+
+INSERT INTO SchultagSchulstunde VALUES (3,9);
+INSERT INTO SchultagSchulstunde VALUES (3,1);
+INSERT INTO SchultagSchulstunde VALUES (3,9);
+INSERT INTO SchultagSchulstunde VALUES (3,7);
+INSERT INTO SchultagSchulstunde VALUES (3,7);
+
+INSERT INTO SchultagSchulstunde VALUES (4,6);
+INSERT INTO SchultagSchulstunde VALUES (4,7);
+INSERT INTO SchultagSchulstunde VALUES (4,7);
+INSERT INTO SchultagSchulstunde VALUES (4,7);
+INSERT INTO SchultagSchulstunde VALUES (4,8);
+
+INSERT INTO SchultagSchulstunde VALUES (5,5);
+INSERT INTO SchultagSchulstunde VALUES (5,5);
+INSERT INTO SchultagSchulstunde VALUES (5,5);
+INSERT INTO SchultagSchulstunde VALUES (5,5);
+INSERT INTO SchultagSchulstunde VALUES (5,5);
 
 INSERT INTO LehrerSchulstunde VALUES (1,1);
 INSERT INTO LehrerSchulstunde VALUES (1,2);
