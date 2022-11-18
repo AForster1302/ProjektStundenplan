@@ -10,13 +10,14 @@ GO
 
 -------------------------------------
 
+DROP TABLE IF EXISTS LehrerSchulstunde;
+DROP TABLE IF EXISTS SchultagSchulstunde;
 DROP TABLE IF EXISTS Lehrer;
 DROP TABLE IF EXISTS Schulstunde;
 DROP TABLE IF EXISTS Schultag;
-DROP TABLE IF EXISTS Stundenplan;
-DROP TABLE IF EXISTS LehrerSchulstunde;
-DROP TABLE IF EXISTS SchultagSchulstunde;
+DROP TABLE IF EXISTS Schulwoche;
 
+------------------------------------
 
 CREATE TABLE Lehrer(
 	LehrerID INT Not Null Primary Key Identity(1,1),
@@ -36,20 +37,20 @@ CREATE TABLE Schulstunde(
 
 -------------------------------------
 
+CREATE TABLE Schultag(
+	SchultagID INT Not Null Primary Key Identity(1,1),
+	NameTag VARCHAR(100) NOT NULL,
+
+);
+
+-------------------------------------
+
 CREATE TABLE LehrerSchulstunde(
 	lehrer_id INT,
 	schulstunde_id INT,
 	PRIMARY KEY(lehrer_id, schulstunde_id),
 		FOREIGN KEY (lehrer_id) REFERENCES Schulstunde(SchulstundeID),
 		FOREIGN KEY (schulstunde_id) REFERENCES Lehrer(LehrerID)
-
-);
-
--------------------------------------
-
-CREATE TABLE Schultag(
-	SchultagID INT Not Null Primary Key Identity(1,1),
-	TagName VARCHAR(100) NOT NULL,
 
 );
 
@@ -68,7 +69,7 @@ CREATE TABLE SchultagSchulstunde(
 -------------------------------------
 
 CREATE TABLE Schulwoche(
-	WochentagID INT Not Null Primary Key Identity(1,1),
+	SchulwocheID INT Not Null Primary Key Identity(1,1),
 	
 );
 
